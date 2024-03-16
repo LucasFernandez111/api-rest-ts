@@ -1,24 +1,22 @@
-import { Router,Response,Request } from "express"
+import { Router } from "express";
+import {
+  deleteItem,
+  getItem,
+  getItems,
+  postItem,
+  updateItem,
+} from "../controllers/item";
 
-const router = Router()
-
-
-
+const router = Router();
 
 /**
- * http://localhost:3002/items [GET]
+ * http://localhost:3002/items [GET|POST|PUT|DELETE]
  */
 
-router.get('/items', (req : Request ,res:Response) =>{
-    res.json({
-        data:'AQUI_VAN_LOS_MODELOS'
-    })
-})
+router.get("/", getItems);
+router.get("/:id", getItem);
+router.post("/", postItem);
+router.put("/:id", updateItem);
+router.delete("/:id", deleteItem);
 
-
-console.log(Router());
-
-
-
-
-export {router}
+export { router };
