@@ -13,7 +13,7 @@ const getItems = async (req: Request, res: Response) => {
     const response = await getCars();
     res.send({ response });
   } catch (err) {
-    handleHttp(res, "ERROR_GET_ITEMS");
+    handleHttp(res, "ERROR_GET_ITEMS", 500, err);
   }
 };
 
@@ -23,7 +23,7 @@ const getItem = async ({ params }: Request, res: Response) => {
     const response = await getCar(id);
     res.send(response);
   } catch (err) {
-    handleHttp(res, "ERROR_GET_ITEM");
+    handleHttp(res, "ERROR_GET_ITEM", 500, err);
   }
 };
 
@@ -32,7 +32,7 @@ const postItem = async ({ body }: Request, res: Response) => {
     const response = await insertCar(body);
     res.send({ response });
   } catch (err) {
-    handleHttp(res, "ERROR_POST_ITEM", err);
+    handleHttp(res, "ERROR_POST_ITEM", 500, err);
   }
 };
 
@@ -43,7 +43,7 @@ const updateItem = async ({ params, body }: Request, res: Response) => {
 
     res.send({ response });
   } catch (err) {
-    handleHttp(res, "ERROR_UPDATE_ITEM", err);
+    handleHttp(res, "ERROR_UPDATE_ITEM", 500, err);
   }
 };
 
@@ -54,7 +54,7 @@ const deleteItem = async ({ params }: Request, res: Response) => {
     const data = response ? response : "NOT_FOUND";
     res.send(data);
   } catch (err) {
-    handleHttp(res, "ERROR_DELETE_ITEM", err);
+    handleHttp(res, "ERROR_DELETE_ITEM", 500, err);
   }
 };
 
