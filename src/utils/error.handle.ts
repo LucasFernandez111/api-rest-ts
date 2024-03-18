@@ -1,10 +1,23 @@
 import { Response } from "express";
 
-const handleHttp = (res:Response,error:string,errorRaw?:any ):void =>{
-    console.info(errorRaw)
+/**
+ *
+ * @param res
+ * @param error
+ * @param code
+ * @param errorRaw Optional
+ *
+ */
 
-    res.status(500).send({error})
+const handleHttp = (
+  res: Response,
+  error: string,
+  code: number,
+  errorRaw?: any
+): void => {
+  if (errorRaw) console.info(errorRaw);
 
-}
+  res.status(code).send({ error });
+};
 
-export {handleHttp}
+export { handleHttp };
